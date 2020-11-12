@@ -1,6 +1,6 @@
 ---
 title: "Research report"
-author: "Dr. Wasilios Hariskos"
+author: "Dr. Wasilios Hariskos and Tobias Kellner"
 date: "12 11 2020"
 output:
   html_document:
