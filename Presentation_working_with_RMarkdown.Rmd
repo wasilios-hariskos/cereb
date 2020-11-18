@@ -271,8 +271,17 @@ https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_hyperref
 
 ## Templates
 
-- package `rticles` provides templates for various journals and publishers, for example:
+- Creating submission-ready documents
+
+- Package `rticles` provides templates for various journals and publishers, for example:
   - Elsevier journal submissions
   - Springer journal submissions
 
-- choose `rticles`-templates in the settings of a new markdown document
+- Choose `rticles`-templates in the settings of a new markdown document
+
+
+## Further Information
+
+- https://bookdown.org/yihui/rmarkdown/
+
+- https://rmarkdown.rstudio.com/
