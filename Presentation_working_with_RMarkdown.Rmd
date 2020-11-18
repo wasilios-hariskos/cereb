@@ -1,0 +1,278 @@
+---
+title: "Creating Scientific Articles with R Markdown"
+author: Tobias Kellner
+date: '`r Sys.setlocale(locale = "English") ; format(Sys.time(), "%B %d, %Y")`'
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+```
+
+## Programs
+
+- MiKTex for Windows, MacTeX for Mac, TeX Live for Linux, ("tinytex")
+- Zotero
+- Zotero-Addon in Firefox
+- (Unpaywall-Addon)
+
+## Package requirements
+
+packages: rticles, tidyverse, citr, knitr, kableExtra
+
+```r 
+install.packages(
+c("rticles","tidyverse","knitr","kableExtra","devtools")
+)
+
+devtools::install_github("crsh/citr")
+```
+
+```r 
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(rticles)
+```
+
+## Why R Markdown?
+
+> - Text and code in one document
+> - Consistency (several reports in same format, templates)
+> - Reproducibility
+> - Easy to switch output between PDF, Word, and HTML (and many other formats)
+> - One R Markdown file for your whole project (data import, cleaning, mergeing, manipulation, calculations,...)
+> - Large number of extension packages and a big community of R users
+
+## YAML header
+
+YAML: Yet Another Markup Language
+
+What It Is: YAML is a human friendly data serialization standard for programming languages.
+
+Used for configuration files
+
+Example:
+
+```
+---
+title: "My Paper"
+author: "My Name"
+abstract: "This is the abstract."
+journal: "Journal xyz"
+date: "01-01-2020"
+output: pdf_document
+---
+```
+
+
+<style>
+pre {
+    line-height: 1.2em;
+    font-size: 20px;
+}
+</style>
+
+## Headers
+
+```r
+# Introduction
+
+# Literature review
+
+# Study design
+
+## Data
+
+## Methodology
+
+# Empirical Results
+
+## Sample A
+
+### Sample A-1
+
+### Sample A-2
+
+## Sample b
+
+# Conclusion
+```
+
+## Text
+
+- Markdown code
+<br/>
+`normal text`   --> normal text
+<br/>
+`**bold**`    --> **bold**
+<br/>
+`*italics*`   --> *italics*
+
+- LaTex code
+<br/>
+`\textbf{text}`     -->$\textbf{text}$
+<br/>
+`\textit{text}`    -->$\textit{text}$
+<br/>
+`\underline{text}`    -->$\underline{text}$
+<br/>
+`\color{red}{text}`   -->$\color {red} {text}$
+<br/>
+`\newline`    -->linebreak
+<br/>
+`\newpage`    -->newpage
+
+## Hyperlinks I
+
+- Hyperlinks to sections
+```
+---
+link-citations: true
+header-includes:
+  \usepackage{hyperref} 
+            \hypersetup{colorlinks=true,linkcolor=blue}
+  \AtBeginDocument{
+  \hypersetup{pdfborder={0 0 1},linkbordercolor=orange}}
+---
+
+# Introduction
+
+This paper is divided into four further sections.
+The next [section](#literaturereview) provides a brief review of
+relevant literature.
+
+\newpage
+
+# Literature review {#literaturereview}
+```
+
+## Embed code
+
+- Inline code
+
+````
+The average HP (horse Power) of all cars is `#r mean(mtcars$hp)`.
+````
+The average HP (horse Power) of all cars is `r mean(mtcars$hp)`
+
+- Code chunks
+
+````{
+```
+{r chunk1, include=T, echo=T}
+
+mean(mtcars$hp)
+```
+````
+
+```{r chunk1, include=T, echo=F}
+mean(mtcars$hp)
+```
+
+## Chunk options
+```{
+eval=TRUE,
+include=TRUE,
+echo=TRUE,
+error=TRUE,
+message=TRUE,
+warning=TRUE,
+```
+
+## Figures
+```{r figure_1, fig.cap="Relationship between disp and mpg", out.width = "70%", message=FALSE, echo=TRUE}
+mtcars%>%
+  ggplot(aes(x=disp,y=mpg))+
+  geom_point()+
+  geom_smooth(method = "lm",se = F)
+```
+
+## Figures II
+
+- Chunk options
+
+````{
+```
+{r chunk_name, message=FALSE, echo=TRUE, 
+fig.cap= "figure caption",
+fig.align="center",
+fig.height=5,
+fig.width=7,
+out.height = "70%",
+out.width = "70%"
+}
+```
+````
+
+## Tables
+```{
+mtcars%>%
+  head(5)%>%
+  kable(format = "latex", booktabs = T)%>%
+  kable_styling(
+    latex_options = c("striped", "hold_position"),
+    position = "center",
+    full_width = T)
+```
+Literature:
+https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf
+
+## Hyperlinks II
+
+- Chunk label must be named!
+
+- Hyperlinks to figures
+
+`\hyperref[fig:figure_1]{Figure~\ref*{fig:figure_1}}`
+
+- Hyperlinks to tables
+
+`\hyperref[tab:table_1]{Table~\ref*{tab:table_1}}`
+
+
+## Insert citations
+
+- Collect literature with Zotero (Zotero Addon)
+- Export Zotero bibliography in the working directory
+- Zotero must run simultaneously
+- Start the CITR-Addin
+
+```{
+---
+bibliography: references.bib
+biblio-style: "apalike"
+---
+```
+- bibliography styles:
+https://www.bibtex.com/bibliography-styles/
+
+## Hyperlinks III
+
+### Hyperlinks to citations:
+```
+---
+header-includes:
+  \usepackage{hyperref}
+    \hypersetup{urlcolor=green}
+  
+  \AtBeginDocument{
+    \hypersetup{urlbordercolor=red}
+  }
+---
+```
+
+- see more:
+
+https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_hyperref
+
+
+## Templates
+
+- package `rticles` provides templates for various journals and publishers, for example:
+  - Elsevier journal submissions
+  - Springer journal submissions
+
+- choose `rticles`-templates in the settings of a new markdown document
