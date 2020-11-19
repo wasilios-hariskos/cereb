@@ -233,12 +233,15 @@ https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf
 `\hyperref[tab:table_1]{Table~\ref*{tab:table_1}}`
 
 
-## Insert citations
+## Collect literature with Zotero
 
-- Collect literature with Zotero (Zotero Addon)
+- Create new bibliography file in Zotero
+
+- Collect literature with Zotero Connector(Firefox Addon)
+
 - Export Zotero bibliography in the working directory
-- Zotero must run simultaneously
-- Start the CITR-Addin
+
+## Insert citations
 
 ```{
 ---
@@ -265,9 +268,9 @@ header-includes:
 ```
 
 - see more:
-
 https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_hyperref
 
+- Start the `CITR`-Addin
 
 ## Templates
 
@@ -281,6 +284,12 @@ https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_hyperref
 
 
 ## Further Information
+
+Visual editor in RStudio 1.4:
+
+- https://rstudio.com/products/rstudio/download/preview/
+
+Literature:
 
 - https://bookdown.org/yihui/rmarkdown/
 
