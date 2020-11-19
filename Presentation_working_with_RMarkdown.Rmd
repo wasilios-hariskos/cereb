@@ -16,7 +16,6 @@ library(tidyverse)
 - MiKTex for Windows, MacTeX for Mac, TeX Live for Linux, ("tinytex")
 - Zotero
 - Zotero-Addon in Firefox
-- (Unpaywall-Addon)
 
 ## Package requirements
 
@@ -75,7 +74,7 @@ pre {
 }
 </style>
 
-## Headers
+## Headers and sections
 
 ```r
 # Introduction
@@ -252,6 +251,8 @@ biblio-style: "apalike"
 - bibliography styles:
 https://www.bibtex.com/bibliography-styles/
 
+- Start the `CITR`-Addin
+
 ## Hyperlinks III
 
 ### Hyperlinks to citations:
@@ -268,9 +269,9 @@ header-includes:
 ```
 
 - see more:
+
 https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_hyperref
 
-- Start the `CITR`-Addin
 
 ## Templates
 
@@ -283,7 +284,7 @@ https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_hyperref
 - Choose `rticles`-templates in the settings of a new markdown document
 
 
-## Further Information
+## Outlook and further Information
 
 Visual editor in RStudio 1.4:
 
