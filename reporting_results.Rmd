@@ -1,0 +1,128 @@
+---
+title: "How to reporting results with R Markdown"
+author: "Wasilios Hariskos and Tobias Kellner"
+date: "25 11 2020"
+output: pdf_document
+header-includes:
+    - \usepackage{dcolumn}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+
+# Data science packages
+library(tidyverse) 
+# leveneTest
+library(car)
+```
+
+# The independent t-test
+
+```{r data, echo=FALSE}
+# Generate factor levels
+Group <- gl(n = 2, 
+            k = 12, 
+            labels = c("Picture", "Real Spider"))
+
+# Enter anxiety scores
+Anxiety <- c(30, 35, 45, 40, 50, 35, 55, 25, 30, 45, 40, 50,
+             40, 35, 50, 55, 65, 55, 50, 35, 30, 50, 60, 39)
+
+# Create data frame
+spider <- tibble(picture = Anxiety[Group == "Picture"],
+                 real = Anxiety[Group == "Real Spider"])
+# Print data
+spider
+```
+
+12 arachnophobes were exposed to a picture of a spider and 12 different arachnophobes were exposed to a real spider. Their anxiety was measure in each condition. Andy Field et al. report the results of an independent t-test as follows (page 385): 
+
+"On average, participants experienced greater anxiety from real spiders (M = 47.00, SE = 3.18), than from pictures of spiders (M = 40.00, SE = 2.68). The difference was not significant t(21.39) = -1.68, p > .05; however, it did represent a medium sized effect r = .34."
+
+We will recreate their results and report them with R Markdown. The data is saved as `spider`and you access the two columns with `spider$picture`and `spider$real`.
+
+We can use the function `mean(x)` to compute the means but we have to write our own function `se(x)` to compute the stanard error of the mean, i.e., the standard deviation of the sampling distribution.
+
+```{r function se}
+se <- function(x) {
+  N <- length(x)
+  sd(x)/sqrt(N)
+  }
+```
+
+We get the following result:
+
+On average, participants experienced greater anxiety from real spiders (M = `r mean(spider$real)`, SE = `r se(spider$real)`), than from pictures of spiders (M = `r mean(spider$picture)`, SE = `r se(spider$picture)`).
+
+We can use `round(x, 2)` to improve the output:
+
+On average, participants experienced greater anxiety from real spiders (M = `r mean(spider$real)`, SE = `r round(se(spider$real), 2)`), than from pictures of spiders (M = `r mean(spider$picture)`, SE = `r round(se(spider$picture), 2)`).
+
+Next, we have to conduct a t-test to see whether the difference in group means is statistically significant.
+
+```{r ttest}
+ttest <- t.test(x = spider$real,
+                y = spider$picture)
+ttest
+```
+
+We want to write "The difference was not significant t(21.39) = -1.68, p > .05". We get the degrees of freedom for the t-statistic with `ttest$parameter`, the value of the t-statistic with `ttest$statistic` and the p-value for the test with `ttest$p.value`.
+
+The difference was not significant t(`r ttest$parameter`) = `r ttest$statistic`, p = `r ttest$p.value`.
+
+We can use `options()` to improve the output (the default is 7).
+
+```{r}
+options(digits = 2)
+```
+
+The difference was not significant t(`r ttest$parameter`) = `r ttest$statistic`, p = `r ttest$p.value`.
+
+Last we want to report the effect size: "however, it did represent a medium sized effect r = .34." To do this we write a small function:
+
+```{r}
+reffect <- function(myttest){
+  df = myttest$parameter
+  t = myttest$statistic
+  r = sqrt(t^2 / (t^2 + df))
+  as.numeric(r)
+}
+```
+
+We get: however, it did represent a medium sized effect r = `r reffect(myttest = ttest)`. Putting everything together, we obtain the final result:
+
+On average, participants experienced greater anxiety from real spiders (M = `r mean(spider$real)`, SE = `r se(spider$real)`), than from pictures of spiders (M = `r mean(spider$picture)`, SE = `r se(spider$picture)`). The difference was not significant t(`r ttest$parameter`) = `r ttest$statistic`, p = `r ttest$p.value`; however, it did represent a medium sized effect r = `r reffect(myttest = ttest)`.
+
+\newpage
+# Multiple lm() models using apsrtable
+
+```{r}
+m1 <- lm(Fertility ~ Education , data = swiss)
+m2 <- lm(Fertility ~ Education + Agriculture, data = swiss)
+m3 <- lm(Fertility ~ . , data = swiss)
+```
+
+```{r, message=FALSE, warning=FALSE, results='asis'}
+# install.packages("apsrtable")
+apsrtable::apsrtable(m1, m2, m3, Sweave = TRUE)
+```
+
+\newpage
+# Multiple lm() models using stargazer
+
+```{r results='asis'}
+# install.packages("stargazer")
+# If output: html_document
+# stargazer::stargazer(m1, m2, m3, type = "html")
+# If output: pdf_document
+stargazer::stargazer(m1, m2, m3)
+```
+
+
+
+
+

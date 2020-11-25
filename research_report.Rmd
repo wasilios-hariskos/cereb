@@ -1,7 +1,7 @@
 ---
 title: "Research report"
-author: "Dr. Wasilios Hariskos and Tobias Kellner"
-date: "12 11 2020"
+author: "Wasilios Hariskos and Tobias Kellner"
+date: "25 11 2020"
 output:
   html_document:
     toc: true
