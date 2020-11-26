@@ -95,7 +95,7 @@ pre {
 
 ### Sample A-2
 
-## Sample b
+## Sample B
 
 # Conclusion
 ```
