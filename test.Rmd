@@ -1,0 +1,36 @@
+---
+title: "My Paper"
+author: "My Name"
+abstract: "This is the abstract."
+journal: "Journal xyz"
+date: "01-01-2020"
+output: pdf_document
+numbersections: TRUE
+---
+
+
+# Introduction
+
+This **paper** is *about* abc.
+\newline
+This \textbf{paper} \underline{is} \textit{about} \textcolor {red} {abc}.
+
+# Literature review
+
+# Study design
+
+## Data
+
+## Methodology
+
+# Empirical Results
+
+## Sample A
+
+### Sample A-1
+
+### Sample A-2
+
+## Sample B
+
+# Conclusion
