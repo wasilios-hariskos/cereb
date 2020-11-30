@@ -4,20 +4,67 @@ author: "My Name"
 abstract: "This is the abstract."
 journal: "Journal xyz"
 date: "01-01-2020"
-output: pdf_document
+output:
+  pdf_document: 
+    keep_tex:  true
+bibliography: references.bib
+csl: journal-of-banking-and-finance.csl
 numbersections: TRUE
+link-citations: true
+header-includes:
+  \usepackage{float}
+  \usepackage{hyperref} 
+            \hypersetup{
+            colorlinks=true,
+            linkcolor=blue,
+            urlcolor=blue}
+  \AtBeginDocument{
+  \hypersetup{pdfborder={ 0 0 1},linkbordercolor=red,
+  urlbordercolor=red}}
+
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(kableExtra)
+```
 
 # Introduction
+
 
 This **paper** is *about* abc.
 \newline
 This \textbf{paper} \underline{is} \textit{about} \textcolor {red} {abc}.
 
-# Literature review
+This paper is divided into four further sections.
+The next [section](#literaturereview) provides a brief review of
+relevant literature.
+
+\hyperref[fig:figure_1]{Figure~\ref*{fig:figure_1}}
+
+\hyperref[tab:table_1]{Table~\ref*{tab:table_1}}
+
+
+
+\newpage
+
+# Literature review {#literaturereview}
+
+[@konigsteinWhyFirmsShould2001]
+
+
+@konigsteinFairnessOneprincipaltwoagentsGame2003
 
 # Study design
+
+The average HP (horse Power) of all cars is `r mean(mtcars$hp)`
+
+```{r chunk1, echo=TRUE}
+
+mean(mtcars$hp)
+```
 
 ## Data
 
@@ -25,7 +72,24 @@ This \textbf{paper} \underline{is} \textit{about} \textcolor {red} {abc}.
 
 # Empirical Results
 
+```{r figure_1, echo=FALSE,fig.cap= "relationship disp and mpg", fig.align="center", out.width = "50%"}
+mtcars %>%
+  ggplot(aes(x = disp, y = mpg)) +
+  geom_point(aes(color = factor(cyl))) +
+  geom_smooth(method = "lm", se = F)
+```
+
 ## Sample A
+
+```{r table_1, echo=FALSE}
+mtcars%>%
+  head(5)%>%
+  kable(booktabs = T,caption="Table mtcars")%>%
+  kable_styling(
+    latex_options = c( "hold_position"),
+    position = "center",
+    full_width = F)
+```
 
 ### Sample A-1
 
@@ -34,3 +98,14 @@ This \textbf{paper} \underline{is} \textit{about} \textcolor {red} {abc}.
 ## Sample B
 
 # Conclusion
+
+# References {-}
+
+<div id="refs"></div>
+
+
+\newpage
+
+# Appendix {-}
+
+

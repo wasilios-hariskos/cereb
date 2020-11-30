@@ -9,7 +9,7 @@
 
 
 
-  <meta name="date" content="2020-11-26" />
+  <meta name="date" content="2020-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -3191,7 +3191,7 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">November 26, 2020</p>
+            <p style="margin-top: 6px; margin-left: -2px;">November 30, 2020</p>
           </hgroup>
   </slide>
 
@@ -3200,7 +3200,7 @@ slide:not(.current) .plotly.html-widget{
 <ul>
 <li>MiKTex for Windows, MacTeX for Mac, TeX Live for Linux, (&ldquo;tinytex&rdquo;)</li>
 <li>Zotero</li>
-<li>Zotero-Addon in Firefox</li>
+<li>Zotero-Addon in Firefox/Chrome</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Package requirements</h2></hgroup><article  id="package-requirements">
@@ -3246,6 +3246,7 @@ abstract: &quot;This is the abstract.&quot;
 journal: &quot;Journal xyz&quot;
 date: &quot;01-01-2020&quot;
 output: pdf_document
+keep_tex: TRUE
 ---</pre>
 
 <style>
@@ -3295,6 +3296,7 @@ pre {
 <pre >---
 link-citations: true
 header-includes:
+  \usepackage{float} 
   \usepackage{hyperref} 
             \hypersetup{colorlinks=true,linkcolor=blue}
   \AtBeginDocument{
@@ -3317,7 +3319,7 @@ relevant literature.
 <li>Inline code</li>
 </ul>
 
-<pre >The average HP (horse Power) of all cars is `#r mean(mtcars$hp)`.</pre>
+<p>The average HP (horse Power) of all cars is <code>`r mean(mtcars$hp)`</code>.</p>
 
 <p>The average HP (horse Power) of all cars is 146.6875</p>
 
@@ -3325,9 +3327,7 @@ relevant literature.
 <li>Code chunks</li>
 </ul>
 
-<pre class = 'prettyprint lang-{'>```
-{r chunk1, include=T, echo=T}
-
+<pre >```{r chunk1, include=T, echo=T}
 mean(mtcars$hp)
 ```</pre>
 
@@ -3406,20 +3406,27 @@ out.width = &quot;70%&quot;
 
 <ul>
 <li><p>Create new bibliography file in Zotero</p></li>
-<li><p>Collect literature with Zotero Connector(Firefox Addon)</p></li>
+<li><p>Collect literature with Zotero Connector (Browser Addon)</p></li>
 <li><p>Export Zotero bibliography in the working directory</p></li>
 </ul>
 
+<pre class = 'prettyprint lang-{'># References {-}
+&lt;div id=&quot;refs&quot;&gt;&lt;/div&gt;</pre>
+
 </article></slide><slide class=""><hgroup><h2>Insert citations</h2></hgroup><article  id="insert-citations">
+
+<ul>
+<li><p>Search citation style: <a href='https://www.zotero.org/styles' title=''>https://www.zotero.org/styles</a></p></li>
+<li><p>Download CSL (Citation Style Language) in the working directory</p></li>
+</ul>
 
 <pre class = 'prettyprint lang-{'>---
 bibliography: references.bib
-biblio-style: &quot;apalike&quot;
+csl: journal-of-banking-and-finance.csl
 ---</pre>
 
 <ul>
-<li><p>bibliography styles: <a href='https://www.bibtex.com/bibliography-styles/' title=''>https://www.bibtex.com/bibliography-styles/</a></p></li>
-<li><p>Start the <code>CITR</code>-Addin</p></li>
+<li>Start the <code>CITR</code>-Addin</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Hyperlinks III</h2></hgroup><article  id="hyperlinks-iii">
@@ -3467,6 +3474,7 @@ header-includes:
 
 <ul>
 <li><p><a href='https://bookdown.org/yihui/rmarkdown/' title=''>https://bookdown.org/yihui/rmarkdown/</a></p></li>
+<li><p><a href='https://bookdown.org/yihui/rmarkdown-cookbook/' title=''>https://bookdown.org/yihui/rmarkdown-cookbook/</a></p></li>
 <li><p><a href='https://rmarkdown.rstudio.com/' title=''>https://rmarkdown.rstudio.com/</a></p></li>
 </ul></article></slide>
 

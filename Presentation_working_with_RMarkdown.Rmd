@@ -15,7 +15,7 @@ library(tidyverse)
 
 - MiKTex for Windows, MacTeX for Mac, TeX Live for Linux, ("tinytex")
 - Zotero
-- Zotero-Addon in Firefox
+- Zotero-Addon in Firefox/Chrome
 
 ## Package requirements
 
@@ -63,6 +63,7 @@ abstract: "This is the abstract."
 journal: "Journal xyz"
 date: "01-01-2020"
 output: pdf_document
+keep_tex: TRUE
 ---
 ```
 
@@ -131,6 +132,7 @@ pre {
 ---
 link-citations: true
 header-includes:
+  \usepackage{float} 
   \usepackage{hyperref} 
             \hypersetup{colorlinks=true,linkcolor=blue}
   \AtBeginDocument{
@@ -152,17 +154,15 @@ relevant literature.
 
 - Inline code
 
-````
-The average HP (horse Power) of all cars is `#r mean(mtcars$hp)`.
-````
+The average HP (horse Power) of all cars is `` `r knitr::inline_expr("mean(mtcars$hp)")` ``.
+
 The average HP (horse Power) of all cars is `r mean(mtcars$hp)`
 
 - Code chunks
 
-````{
-```
-{r chunk1, include=T, echo=T}
 
+````
+```{r chunk1, include=T, echo=T}`r ''`
 mean(mtcars$hp)
 ```
 ````
@@ -236,20 +236,27 @@ https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf
 
 - Create new bibliography file in Zotero
 
-- Collect literature with Zotero Connector(Firefox Addon)
+- Collect literature with Zotero Connector (Browser Addon)
 
 - Export Zotero bibliography in the working directory
 
+```{
+# References {-}
+<div id="refs"></div>
+```
+
 ## Insert citations
+
+- Search citation style: https://www.zotero.org/styles
+
+- Download CSL (Citation Style Language) in the working directory
 
 ```{
 ---
 bibliography: references.bib
-biblio-style: "apalike"
+csl: journal-of-banking-and-finance.csl
 ---
 ```
-- bibliography styles:
-https://www.bibtex.com/bibliography-styles/
 
 - Start the `CITR`-Addin
 
@@ -293,5 +300,7 @@ Visual editor in RStudio 1.4:
 Literature:
 
 - https://bookdown.org/yihui/rmarkdown/
+
+- https://bookdown.org/yihui/rmarkdown-cookbook/
 
 - https://rmarkdown.rstudio.com/
