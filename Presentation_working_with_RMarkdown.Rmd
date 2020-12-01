@@ -9,6 +9,7 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 
 library(tidyverse)
+library(kableExtra)
 ```
 
 ## Programs
@@ -60,10 +61,10 @@ Example:
 title: "My Paper"
 author: "My Name"
 abstract: "This is the abstract."
-journal: "Journal xyz"
 date: "01-01-2020"
-output: pdf_document
-keep_tex: TRUE
+output: 
+  pdf_document:
+  keep_tex: TRUE
 ---
 ```
 
@@ -119,7 +120,7 @@ pre {
 <br/>
 `\underline{text}`    -->$\underline{text}$
 <br/>
-`\color{red}{text}`   -->$\color {red} {text}$
+`\textcolor{red}{text}`   -->$\color {red} {text}$
 <br/>
 `\newline`    -->linebreak
 <br/>
@@ -130,13 +131,13 @@ pre {
 - Hyperlinks to sections
 ```
 ---
-link-citations: true
+link-citations: TRUE
 header-includes:
   \usepackage{float} 
   \usepackage{hyperref} 
             \hypersetup{colorlinks=true,linkcolor=blue}
   \AtBeginDocument{
-  \hypersetup{pdfborder={0 0 1},linkbordercolor=orange}}
+  \hypersetup{pdfborder={0 0 1},linkbordercolor=red}}
 ---
 
 # Introduction
@@ -180,8 +181,12 @@ error=TRUE,
 message=TRUE,
 warning=TRUE,
 ```
+More information:
+
+https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf
 
 ## Figures
+
 ```{r figure_1, fig.cap="Relationship between disp and mpg", out.width = "70%", message=FALSE, echo=TRUE}
 mtcars%>%
   ggplot(aes(x=disp,y=mpg))+
@@ -210,9 +215,9 @@ out.width = "70%"
 ```{
 mtcars%>%
   head(5)%>%
-  kable(format = "latex", booktabs = T)%>%
+  kable(booktabs = T, caption="Table mtcars")%>%
   kable_styling(
-    latex_options = c("striped", "hold_position"),
+    latex_options = c("hold_position"),
     position = "center",
     full_width = T)
 ```

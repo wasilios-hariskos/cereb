@@ -9,7 +9,7 @@
 
 
 
-  <meta name="date" content="2020-11-30" />
+  <meta name="date" content="2020-12-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -3191,7 +3191,7 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">November 30, 2020</p>
+            <p style="margin-top: 6px; margin-left: -2px;">December 01, 2020</p>
           </hgroup>
   </slide>
 
@@ -3243,10 +3243,10 @@ library(rticles)</pre>
 title: &quot;My Paper&quot;
 author: &quot;My Name&quot;
 abstract: &quot;This is the abstract.&quot;
-journal: &quot;Journal xyz&quot;
 date: &quot;01-01-2020&quot;
-output: pdf_document
-keep_tex: TRUE
+output: 
+  pdf_document:
+  keep_tex: TRUE
 ---</pre>
 
 <style>
@@ -3284,7 +3284,7 @@ pre {
 
 <ul>
 <li><p>Markdown code <br/> <code>normal text</code> –&gt; normal text <br/> <code>**bold**</code> –&gt; <strong>bold</strong> <br/> <code>*italics*</code> –&gt; <em>italics</em></p></li>
-<li><p>LaTex code <br/> <code>\textbf{text}</code> –&gt;\(\textbf{text}\) <br/> <code>\textit{text}</code> –&gt;\(\textit{text}\) <br/> <code>\underline{text}</code> –&gt;\(\underline{text}\) <br/> <code>\color{red}{text}</code> –&gt;\(\color {red} {text}\) <br/> <code>\newline</code> –&gt;linebreak <br/> <code>\newpage</code> –&gt;newpage</p></li>
+<li><p>LaTex code <br/> <code>\textbf{text}</code> –&gt;\(\textbf{text}\) <br/> <code>\textit{text}</code> –&gt;\(\textit{text}\) <br/> <code>\underline{text}</code> –&gt;\(\underline{text}\) <br/> <code>\textcolor{red}{text}</code> –&gt;\(\color {red} {text}\) <br/> <code>\newline</code> –&gt;linebreak <br/> <code>\newpage</code> –&gt;newpage</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Hyperlinks I</h2></hgroup><article  id="hyperlinks-i">
@@ -3294,13 +3294,13 @@ pre {
 </ul>
 
 <pre >---
-link-citations: true
+link-citations: TRUE
 header-includes:
   \usepackage{float} 
   \usepackage{hyperref} 
             \hypersetup{colorlinks=true,linkcolor=blue}
   \AtBeginDocument{
-  \hypersetup{pdfborder={0 0 1},linkbordercolor=orange}}
+  \hypersetup{pdfborder={0 0 1},linkbordercolor=red}}
 ---
 
 # Introduction
@@ -3342,6 +3342,10 @@ error=TRUE,
 message=TRUE,
 warning=TRUE,</pre>
 
+<p>More information:</p>
+
+<p><a href='https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf' title=''>https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf</a></p>
+
 </article></slide><slide class=""><hgroup><h2>Figures</h2></hgroup><article  id="figures">
 
 <pre class = 'prettyprint lang-r'>mtcars%&gt;%
@@ -3379,9 +3383,9 @@ out.width = &quot;70%&quot;
 
 <pre class = 'prettyprint lang-{'>mtcars%&gt;%
   head(5)%&gt;%
-  kable(format = &quot;latex&quot;, booktabs = T)%&gt;%
+  kable(booktabs = T, caption=&quot;Table mtcars&quot;)%&gt;%
   kable_styling(
-    latex_options = c(&quot;striped&quot;, &quot;hold_position&quot;),
+    latex_options = c(&quot;hold_position&quot;),
     position = &quot;center&quot;,
     full_width = T)</pre>
 

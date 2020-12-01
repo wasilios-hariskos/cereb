@@ -4,28 +4,22 @@ author: "My Name"
 abstract: "This is the abstract."
 journal: "Journal xyz"
 date: "01-01-2020"
-output:
-  pdf_document: 
-    keep_tex:  true
-bibliography: references.bib
-csl: journal-of-banking-and-finance.csl
+output: 
+  pdf_document:
+  keep_tex: TRUE
 numbersections: TRUE
 link-citations: true
+bibliography: references.bib
+csl: journal-of-banking-and-finance.csl
 header-includes:
-  \usepackage{float}
+  \usepackage{float} 
   \usepackage{hyperref} 
-            \hypersetup{
-            colorlinks=true,
-            linkcolor=blue,
-            urlcolor=blue}
+            \hypersetup{colorlinks=true,linkcolor=blue, urlcolor=green}
   \AtBeginDocument{
-  \hypersetup{pdfborder={ 0 0 1},linkbordercolor=red,
-  urlbordercolor=red}}
-
+  \hypersetup{pdfborder={0 0 1},linkbordercolor=red, urlbordercolor=red}}
 ---
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 
 library(tidyverse)
 library(kableExtra)
@@ -33,53 +27,53 @@ library(kableExtra)
 
 # Introduction
 
-
 This **paper** is *about* abc.
 \newline
-This \textbf{paper} \underline{is} \textit{about} \textcolor {red} {abc}.
+This \textbf{paper} is \textit{about} \textcolor{red} {abc}.
+
 
 This paper is divided into four further sections.
 The next [section](#literaturereview) provides a brief review of
 relevant literature.
 
-\hyperref[fig:figure_1]{Figure~\ref*{fig:figure_1}}
+\hyperref[fig:figure_1]{Figure~\ref*{fig:figure_1}} displays the relationship between disp and mpg.
 
-\hyperref[tab:table_1]{Table~\ref*{tab:table_1}}
-
+\hyperref[tab:table_1]{Table~\ref*{tab:table_1}} shows the first rows of the mtcars dataset.
 
 
 \newpage
-
+ 
 # Literature review {#literaturereview}
 
 [@konigsteinWhyFirmsShould2001]
-
 
 @konigsteinFairnessOneprincipaltwoagentsGame2003
 
 # Study design
 
-The average HP (horse Power) of all cars is `r mean(mtcars$hp)`
+## Data
 
-```{r chunk1, echo=TRUE}
+The average HP (horse Power) of all cars is `r mean(mtcars$hp)`.
 
+
+```{r chunk1, echo=T, include=T}
 mean(mtcars$hp)
 ```
-
-## Data
 
 ## Methodology
 
 # Empirical Results
 
-```{r figure_1, echo=FALSE,fig.cap= "relationship disp and mpg", fig.align="center", out.width = "50%"}
-mtcars %>%
-  ggplot(aes(x = disp, y = mpg)) +
-  geom_point(aes(color = factor(cyl))) +
-  geom_smooth(method = "lm", se = F)
+## Sample A
+
+```{r figure_1, echo=FALSE, fig.cap= "relationship disp and mpg", fig.align="center", out.width = "50%"}
+mtcars%>%
+  ggplot(aes(x=disp,y=mpg))+
+  geom_point()+
+  geom_smooth(method = "lm",se = F)
 ```
 
-## Sample A
+### Sample A-1
 
 ```{r table_1, echo=FALSE}
 mtcars%>%
@@ -91,8 +85,6 @@ mtcars%>%
     full_width = F)
 ```
 
-### Sample A-1
-
 ### Sample A-2
 
 ## Sample B
@@ -102,10 +94,3 @@ mtcars%>%
 # References {-}
 
 <div id="refs"></div>
-
-
-\newpage
-
-# Appendix {-}
-
-
