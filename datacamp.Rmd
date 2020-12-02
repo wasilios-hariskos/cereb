@@ -1,0 +1,29 @@
+---
+title: "List of recommened Datacamp courses"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You want to learn R or refresh your skills? You don't know where to start? Below you find a list of six basic courses that are recommended for beginners. Each course take about 4 hours to complete. Have fun!
+
++ [Introduction to R](https://learn.datacamp.com/courses/free-introduction-to-r)
++ [Intermediate R](https://learn.datacamp.com/courses/intermediate-r)
++ [Introduction to the Tidyverse](https://learn.datacamp.com/courses/introduction-to-the-tidyverse)
++ [Exploratory Data Analysis in R](https://learn.datacamp.com/courses/exploratory-data-analysis-in-r)
++ [Modeling with Data in the Tidyverse](https://learn.datacamp.com/courses/modeling-with-data-in-the-tidyverse)
++ [Reporting with R Markdown](https://learn.datacamp.com/courses/reporting-with-rmarkdown)
+
+If you want to dive deeper into an advanced topic, you will most likely find a course that fits your interest. You need some ideas? Check out the courses below.
+
++ [Visualizing Big Data with Trelliscope in R](https://learn.datacamp.com/courses/visualizing-big-data-with-trelliscope-in-r)
++ [Structural Equation Modeling with lavaan in R](https://learn.datacamp.com/courses/structural-equation-modeling-with-lavaan-in-r)
++ [Machine Learning in the Tidyverse](https://learn.datacamp.com/courses/machine-learning-in-the-tidyverse)
++ [Dealing With Missing Data in R](https://learn.datacamp.com/courses/dealing-with-missing-data-in-r)
++ [Foundations of Probability in R](https://learn.datacamp.com/courses/foundations-of-probability-in-r)
++ [Bayesian Modeling with RJAGS](https://learn.datacamp.com/courses/bayesian-modeling-with-rjags)
+
+
+
