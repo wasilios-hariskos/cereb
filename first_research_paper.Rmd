@@ -1,0 +1,96 @@
+---
+title: "My Paper"
+author: "My Name"
+abstract: "This is the abstract."
+date: "01-01-2020"
+output: 
+  pdf_document:
+  keep_tex: TRUE
+numbersections: TRUE
+link-citations: TRUE
+header-includes:
+  \usepackage{float} 
+  \usepackage{hyperref} 
+  \hypersetup{colorlinks=true,linkcolor=blue}
+  \AtBeginDocument{\hypersetup{pdfborder={0 0 1}, linkbordercolor=red}}
+---
+
+```{r packages, message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+```
+
+
+# Introduction
+
+
+This paper is divided into four further sections.
+The next [section](#literaturereview) provides a brief review of
+relevant literature.
+
+The [section 3](#studydesign)
+
+# Literature review {#literaturereview}
+
+Markdown code
+
+normal text –> normal text
+**bold** –> bold
+*italics* –> italics
+
+LaTex code
+
+\textbf{text} –>text
+\textit{text} –>text
+\underline{text} –>text––––
+\textcolor{red}{text} –>text
+\newline –>linebreak
+\newpage –>newpage
+
+# Study design {#studydesign}
+
+## Data
+
+The average HP (horse Power) of all cars is `r mean(mtcars$hp)`.
+
+```{r chunk1, include=T, echo=T}
+mean(mtcars$hp)
+```
+
+## Methodology
+
+
+# Empirical Results
+
+## Sample A
+
+```{r figure1, echo=FALSE, message=FALSE, fig.cap="Relationship disp and mpg", out.height="10%"}
+mtcars%>%
+  ggplot(aes(x=disp,y=mpg))+
+  geom_point()+
+  geom_smooth(method = "lm",se = F)
+```
+
+
+
+
+### Sample A-1
+
+
+```{r}
+mtcars%>%
+  head(5)%>%
+  kable(booktabs = T, caption="Table mtcars")%>%
+  kable_styling(
+    latex_options = c("hold_position"),
+    position = "center",
+    full_width = T)
+```
+
+
+
+### Sample A-2
+
+## Sample B
+
+# Conclusion
