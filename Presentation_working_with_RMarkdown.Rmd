@@ -16,7 +16,7 @@ library(kableExtra)
 
 - MiKTex for Windows, MacTeX for Mac, TeX Live for Linux, ("tinytex")
 - Zotero
-- Zotero-Addon in Firefox/Chrome
+- Zotero-Addon in Firefox/Chrome (https://www.zotero.org/download/)
 
 ## Package requirements
 

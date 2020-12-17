@@ -1,0 +1,88 @@
+---
+title: "My Paper"
+author: "My Name"
+abstract: "This is the abstract."
+date: "01-01-2020"
+output: 
+  pdf_document:
+    keep_tex: TRUE
+numbersections: True
+link-citations: TRUE
+header-includes:
+  \usepackage{float} 
+  \usepackage{hyperref} 
+            \hypersetup{colorlinks=true,linkcolor=blue}
+  \AtBeginDocument{
+  \hypersetup{pdfborder={0 0 1},linkbordercolor=red}}
+---
+
+```{r options, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(kableExtra)
+```
+
+
+# Introduction
+
+This **paper** is *about* abc.
+\newline
+\underline{This} \textbf{paper} is \textit{about} \textcolor{red}{abc}.
+
+This paper is divided into four further sections.
+The next [section](#literaturereview) provides a brief review of
+relevant literature.
+The [section 3](#studydesign)
+
+\newpage
+
+# Literature review {#literaturereview}
+
+# Study design {#studydesign}
+
+## Data
+
+The average HP (horse Power) of all cars is `r mean(mtcars$hp)`.
+
+```{r chunk1, eval=FALSE, echo=FALSE, include=TRUE}
+mean(mtcars$hp)
+```
+
+```{r}
+source("script1.R")
+```
+
+
+```{r figure_1, echo=FALSE, message=FALSE, fig.cap="Relationship disp and mpg", out.height = "70%"}
+mtcars%>%
+  ggplot(aes(x=disp,y=mpg))+
+  geom_point()+
+  geom_smooth(method = "lm",se = F)
+```
+
+
+```{r table_1}
+mtcars%>%
+  head(5)%>%
+  kable(booktabs = T, caption="Table mtcars")%>%
+  kable_styling(
+    latex_options = c("hold_position"),
+    position = "center",
+    full_width = F)
+```
+
+
+## Methodology
+
+# Empirical Results
+
+## Sample A
+
+### Sample A-1
+
+### Sample A-2
+
+## Sample B
+
+# Conclusion
+
+# References {-}
